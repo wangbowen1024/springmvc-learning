@@ -21,7 +21,18 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <!-- IOC注册类型转换服务工厂bean -->
+    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <!-- IOC注册类型转换器，并添加到服务中 -->
+                <!--<bean id="dateConverter" class="com.springmvc.utils.DateConverter"/>-->
+            </set>
+        </property>
+    </bean>
+
     <!-- 开启SpringMVC框架注解的支持 -->
-    <mvc:annotation-driven/>
+    <!-- 同时开启类型转换服务支持 -->
+    <mvc:annotation-driven conversion-service="conversionService"/>
 
 </beans>
